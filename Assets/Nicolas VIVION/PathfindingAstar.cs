@@ -45,22 +45,50 @@ namespace vivion {
         private float accumulateur = 0;
         private float accMob = 0;
 		
+		public Vector2Int direction;
+		public bool doneDeplac = true;
+		public Vector2 tEnCours;
 		void Update () {
 			if(inMapMob()){
 
 				transform.rotation = Quaternion.Euler(0,0,0);
 
+
+
+				tEnCours = new Vector2(this.transform.position.x, this.transform.position.y);
+				// if(Vector2.Distance (tEnCours, direction) < 0.1f){
+				// 	doneDeplac = true;
+				// }
+
 				float frameDurationMob = GetFrameDurationInSecMob();
 				accMob += Time.deltaTime;
 				while(accMob > frameDurationMob) {
 
-					if(deplacement != null && enCours < deplacement.Count){
-						Vector2Int direction = deplacement[enCours];
+					if(deplacement != null && enCours < deplacement.Count && doneDeplac){
+						direction = deplacement[enCours];
 						enCours++;
-						mouve(direction);
 					}
 					accMob -= frameDurationMob;
 				}
+				this.transform.position = Vector2.MoveTowards(tEnCours, direction, 0.05f);
+
+			
+				
+				
+
+
+				// float frameDurationMob = GetFrameDurationInSecMob();
+				// accMob += Time.deltaTime;
+				// while(accMob > frameDurationMob) {
+
+				// 	if(deplacement != null && enCours < deplacement.Count){
+				// 		direction = deplacement[enCours];
+				// 		enCours++;
+				// 		mouve(direction);
+				// 	}
+				// 	accMob -= frameDurationMob;
+
+				// }
 
 				float frameDuration = GetFrameDurationInSec();
 				accumulateur += Time.deltaTime;
@@ -80,7 +108,6 @@ namespace vivion {
 			}
 			return false;
 		}
-
 		private float GetFrameDurationInSec () {
             return 1.5f;
         }
@@ -217,5 +244,6 @@ namespace vivion {
 		public void mouve(Vector2Int direction){
 			this.transform.position = new Vector3(direction.x, direction.y, 0);
 		}
+
 	}
 }
