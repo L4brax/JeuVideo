@@ -35,7 +35,7 @@ namespace lepoupon {
 
 		private GameObject ambienceSound;
 
-		private AudioSourceLoop myAudio;
+//		private AudioSourceLoop myAudio;
 
 		// Use this for initialization
 		void Start () {
@@ -53,7 +53,7 @@ namespace lepoupon {
 			stats = (GameManagerMain) gameManager.GetComponent(typeof(GameManagerMain));
 
 			ambienceSound = GameObject.FindWithTag("Sound");
-			myAudio = (AudioSourceLoop) ambienceSound.GetComponent(typeof(AudioSourceLoop));
+		//	myAudio = (AudioSourceLoop) ambienceSound.GetComponent(typeof(AudioSourceLoop));
 		}
 		
 		// Update is called once per frame
@@ -90,7 +90,7 @@ namespace lepoupon {
 			//Stop character
 			move.canMove = false;
 
-			myAudio.setIsBossFight(true);
+		//	myAudio.setIsBossFight(true);
 
 			//Teleport character to the center of the map
 			GameObject map = trackingScript.mapEnCour();
