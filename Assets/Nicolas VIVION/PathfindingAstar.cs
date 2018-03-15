@@ -45,21 +45,17 @@ namespace vivion {
         private float accumulateur = 0;
         private float accMob = 0;
 		
-		public Vector2Int direction;
-		public bool doneDeplac = true;
-		public Vector2 tEnCours;
+		private Vector2Int direction;
+		private bool doneDeplac = true;
+		private Vector2 tEnCours;
+
 		void Update () {
 			if(inMapMob()){
 
 				transform.rotation = Quaternion.Euler(0,0,0);
 
-
-
 				tEnCours = new Vector2(this.transform.position.x, this.transform.position.y);
-				// if(Vector2.Distance (tEnCours, direction) < 0.1f){
-				// 	doneDeplac = true;
-				// }
-
+			
 				float frameDurationMob = GetFrameDurationInSecMob();
 				accMob += Time.deltaTime;
 				while(accMob > frameDurationMob) {
