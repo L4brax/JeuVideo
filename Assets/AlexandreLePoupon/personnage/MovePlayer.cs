@@ -51,7 +51,7 @@ public class MovePlayer : MonoBehaviour {
 		// currentAcceleration retourne un changement de vitesse par seconde mais lors d'un update 
 		// seulement "Time.deltaTime" secondes se sont écoulées. On applique donc l'accélération proportionellement 
 		// au temps écoulé.
-		currentSpeed += currentAcceleration * Time.deltaTime;
+		currentSpeed += currentAcceleration;// * Time.deltaTime;
 		// Vector3.ClampMagnitude permet de limiter la vitesse globale en borant l'amplitude du vecteur de vitesse
 		currentSpeed = Vector3.ClampMagnitude (currentSpeed, maxSpeed);
 		// Simule un freinage lorsque le personnage cesse de se déplacer
