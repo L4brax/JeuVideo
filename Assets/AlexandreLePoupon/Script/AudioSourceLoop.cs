@@ -12,11 +12,11 @@ public class AudioSourceLoop : MonoBehaviour {
 
     void Start()
     {
-        backgroundSound.Stop();
+        // backgroundSound.Stop();
 		
 		isBossFight = false;
 		
-        backgroundSound.Play();
+        // backgroundSound.Play();
     }
 
     void Update()

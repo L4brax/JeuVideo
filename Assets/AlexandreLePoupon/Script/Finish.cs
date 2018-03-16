@@ -13,6 +13,10 @@ namespace lepoupon {
 
 		public Canvas cadreText;
 
+		public Canvas cadreTextAtt;
+		
+		public Canvas cadreTextDef;
+
 		public Text endText;
 
 		private List<string> text;
@@ -35,7 +39,7 @@ namespace lepoupon {
 
 		private GameObject ambienceSound;
 
-//		private AudioSourceLoop myAudio;
+		private AudioSourceLoop myAudio;
 
 		// Use this for initialization
 		void Start () {
@@ -46,6 +50,10 @@ namespace lepoupon {
 			myCam = GameObject.FindWithTag("MainCamera");
 			trackingScript = (Tracking) myCam.GetComponent(typeof(Tracking));
 	
+			Debug.Log(myCam);
+			
+			Debug.Log(trackingScript);
+
 			myPlayer = GameObject.FindWithTag("Player");
 			move = (MovePlayer) myPlayer.GetComponent(typeof(MovePlayer));
 
@@ -53,7 +61,7 @@ namespace lepoupon {
 			stats = (GameManagerMain) gameManager.GetComponent(typeof(GameManagerMain));
 
 			ambienceSound = GameObject.FindWithTag("Sound");
-		//	myAudio = (AudioSourceLoop) ambienceSound.GetComponent(typeof(AudioSourceLoop));
+			myAudio = (AudioSourceLoop) ambienceSound.GetComponent(typeof(AudioSourceLoop));
 		}
 		
 		// Update is called once per frame
@@ -65,20 +73,52 @@ namespace lepoupon {
 			}
 			if(isFinalMap() && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))) {
 				inc += 1;
-				if(text[inc] == "Restarting") { 
-					SceneManager.LoadScene("MapLPJ");
+				if(text[inc] == "Redémarrage ...") {
+					SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 				}
 				endText.text = text[inc];
 			}
 			if(Input.GetKeyDown(KeyCode.Escape)) {
 				Application.Quit();
 			}
+
+			if(isIndiceAtt()) {
+				cadreTextAtt.sortingOrder = 3;
+			} else {
+				cadreTextAtt.sortingOrder = -1;
+			}
+
+			if(isIndiceDef()) {
+				cadreTextDef.sortingOrder = 3;
+			} else {
+				cadreTextDef.sortingOrder = -1;
+			}
 		}
 
 		bool isFinalMap() {
 			int x = trackingScript.matriceEnCoursX;
 			int y = trackingScript.matriceEnCoursY;
-			if(x==1 && y==1) {
+			if(x==4 && y==4) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+
+		bool isIndiceDef() {
+			int x = trackingScript.matriceEnCoursX;
+			int y = trackingScript.matriceEnCoursY;
+			if(x==1 && y==3) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+
+		bool isIndiceAtt() {
+			int x = trackingScript.matriceEnCoursX;
+			int y = trackingScript.matriceEnCoursY;
+			if(x==3 && y==0) {
 				return true;
 			}else {
 				return false;
@@ -90,7 +130,7 @@ namespace lepoupon {
 			//Stop character
 			move.canMove = false;
 
-		//	myAudio.setIsBossFight(true);
+			myAudio.setIsBossFight(true);
 
 			//Teleport character to the center of the map
 			GameObject map = trackingScript.mapEnCour();
@@ -99,41 +139,41 @@ namespace lepoupon {
 			player.position = new Vector3(x, y, 0);
 
 			//Display text
-			text.Add("A dragon is attacking you! You can not run away, you'll have to fight!");
+			text.Add("Un dragon vous attaque ! Vous ne pouvez pas vous enfuir, vous allez devoir vous battre !");
 
-			text.Add("The dragon spits fire on you.");
+			text.Add("Le dragon prépare son souffle ardent.");
 			if(stats.fireDefense > 0) {
-				text.Add("You protect yourself with your shield of fire.");
+				text.Add("Vous vous protégez grâce à votre bouclier de feu.");
 			} else if(stats.frostDefense > 0) {
-				text.Add("You did not succeed in defending yourself. Your shield of ice melts following the breath of the dragon. You burn and die in horrible sulfur.");
+				text.Add("Vous n'avez pas réussi à vous défendre. Votre bouclier de glace fond à cause du souffle du dragon. Vous brûlez et mourrez dans d'atroces souffrances.");
 				dead = true;
 			} else {
-				text.Add("You have no shield to protect you from the dragon's breath! You burn and die in horrible sulfur.");
+				text.Add("Vous n'avez pas de bouclier pour vous proteger du souffle du dragon ! Vous brulez et mourrez dans d'atroces souffrances.");
 				dead = true;
 			}
 
 			if(!dead) {
-				text.Add("It's your turn to hit!");
+				text.Add("C'est à votre tour d'attaquer !");
 			}
 
 			if(!dead && stats.frostAttack > 0) {
-				text.Add("Your icy sword-blow defeats the dragon!");
+				text.Add("Votre coup d'épée glacée pourfend le dragon !");
 			} else if(!dead && stats.fireAttack > 0) {
-				text.Add("Your flaming sword is ineffective against the dragon! He devours you ...");
+				text.Add("Votre épée enflammée est inefficace contre le dragon ! Il vous dévore ...");
 				dead = true;
 			} else if(!dead) {
-				text.Add("You don't have a sword to fight the dragon. He devours you ...");
+				text.Add("Vous n'avez pas d'épée pour combattre le dragon. Il vous dévore ...");
 				dead = true;
 			}
 
 			if(!dead) {
-				text.Add("You win this fight, well played!");
+				text.Add("Vous avez gagné ce combat, bien joué !");
 			} else {
-				text.Add("You loose for this time... Try again!");
+				text.Add("Vous avez perdu pour cette fois... Réessayez !");
 			}
 
-			text.Add("Press Enter to restart or Escape to quit");
-			text.Add("Restarting");
+			text.Add("Appuyez sur 'entrer' pour recommencer ou 'échap' pour quitter.");
+			text.Add("Redémarrage ...");
 
 			endText.text = text[inc];
 			cadreText.sortingOrder = 3;
