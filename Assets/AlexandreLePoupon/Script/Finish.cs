@@ -13,6 +13,10 @@ namespace lepoupon {
 
 		public Canvas cadreText;
 
+		public Canvas cadreTextAtt;
+		
+		public Canvas cadreTextDef;
+
 		public Text endText;
 
 		private List<string> text;
@@ -35,7 +39,7 @@ namespace lepoupon {
 
 		private GameObject ambienceSound;
 
-//		private AudioSourceLoop myAudio;
+		private AudioSourceLoop myAudio;
 
 		// Use this for initialization
 		void Start () {
@@ -46,6 +50,10 @@ namespace lepoupon {
 			myCam = GameObject.FindWithTag("MainCamera");
 			trackingScript = (Tracking) myCam.GetComponent(typeof(Tracking));
 	
+			Debug.Log(myCam);
+			
+			Debug.Log(trackingScript);
+
 			myPlayer = GameObject.FindWithTag("Player");
 			move = (MovePlayer) myPlayer.GetComponent(typeof(MovePlayer));
 
@@ -53,7 +61,7 @@ namespace lepoupon {
 			stats = (GameManagerMain) gameManager.GetComponent(typeof(GameManagerMain));
 
 			ambienceSound = GameObject.FindWithTag("Sound");
-		//	myAudio = (AudioSourceLoop) ambienceSound.GetComponent(typeof(AudioSourceLoop));
+			myAudio = (AudioSourceLoop) ambienceSound.GetComponent(typeof(AudioSourceLoop));
 		}
 		
 		// Update is called once per frame
@@ -65,20 +73,52 @@ namespace lepoupon {
 			}
 			if(isFinalMap() && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))) {
 				inc += 1;
-				if(text[inc] == "Restarting") { 
-					SceneManager.LoadScene("MapLPJ");
+				if(text[inc] == "Redémarrage ...") {
+					SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 				}
 				endText.text = text[inc];
 			}
 			if(Input.GetKeyDown(KeyCode.Escape)) {
 				Application.Quit();
 			}
+
+			if(isIndiceAtt()) {
+				cadreTextAtt.sortingOrder = 3;
+			} else {
+				cadreTextAtt.sortingOrder = -1;
+			}
+
+			if(isIndiceDef()) {
+				cadreTextDef.sortingOrder = 3;
+			} else {
+				cadreTextDef.sortingOrder = -1;
+			}
 		}
 
 		bool isFinalMap() {
 			int x = trackingScript.matriceEnCoursX;
 			int y = trackingScript.matriceEnCoursY;
-			if(x==1 && y==1) {
+			if(x==4 && y==4) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+
+		bool isIndiceDef() {
+			int x = trackingScript.matriceEnCoursX;
+			int y = trackingScript.matriceEnCoursY;
+			if(x==1 && y==3) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+
+		bool isIndiceAtt() {
+			int x = trackingScript.matriceEnCoursX;
+			int y = trackingScript.matriceEnCoursY;
+			if(x==3 && y==0) {
 				return true;
 			}else {
 				return false;
@@ -90,7 +130,7 @@ namespace lepoupon {
 			//Stop character
 			move.canMove = false;
 
-		//	myAudio.setIsBossFight(true);
+			myAudio.setIsBossFight(true);
 
 			//Teleport character to the center of the map
 			GameObject map = trackingScript.mapEnCour();
