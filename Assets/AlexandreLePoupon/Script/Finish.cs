@@ -71,14 +71,14 @@ namespace lepoupon {
 				inc = 0;
 				fight();
 			}
-			if(isFinalMap() && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))) {
+			if(isFinalMap() && (Input.GetButtonDown("Entrer"))) {
 				inc += 1;
 				if(text[inc] == "Redémarrage ...") {
 					SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 				}
 				endText.text = text[inc];
 			}
-			if(Input.GetKeyDown(KeyCode.Escape)) {
+			if(Input.GetButtonDown("Echap")) {
 				Application.Quit();
 			}
 

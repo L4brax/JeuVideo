@@ -7260,6 +7260,16 @@ Prefab:
       propertyPath: m_TileColorArray.Array.data[0].m_RefCount
       value: 55
       objectReference: {fileID: 0}
+    - target: {fileID: 3664157344388169924, guid: 7f2d44882344c78499529e5bb4668e51,
+        type: 2}
+      propertyPath: m_SortOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3664157343533401678, guid: 7f2d44882344c78499529e5bb4668e51,
+        type: 2}
+      propertyPath: m_SortOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f2d44882344c78499529e5bb4668e51, type: 2}
   m_IsPrefabParent: 0
@@ -31120,7 +31130,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.006862402, y: 0.034695894}
+  m_Offset: {x: 0.006104946, y: -0.34135506}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -31131,7 +31141,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.76956606, y: 0.9493918}
+  m_Size: {x: 0.32867908, y: 0.19728988}
   m_EdgeRadius: 0
 --- !u!50 &933612069
 Rigidbody2D:
