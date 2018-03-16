@@ -66,33 +66,33 @@ namespace lepoupon {
 		
 		// Update is called once per frame
 		void Update () {
-			if(fightStarted==false && isFinalMap()) {
-				fightStarted = true;
-				inc = 0;
-				fight();
-			}
-			if(isFinalMap() && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))) {
-				inc += 1;
-				if(text[inc] == "Redémarrage ...") {
-					SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-				}
-				endText.text = text[inc];
-			}
-			if(Input.GetKeyDown(KeyCode.Escape)) {
-				Application.Quit();
-			}
+			// if(fightStarted==false && isFinalMap()) {
+			// 	fightStarted = true;
+			// 	inc = 0;
+			// 	fight();
+			// }
+			// if(isFinalMap() && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))) {
+			// 	inc += 1;
+			// 	if(text[inc] == "Redémarrage ...") {
+			// 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			// 	}
+			// 	endText.text = text[inc];
+			// }
+			// if(Input.GetKeyDown(KeyCode.Escape)) {
+			// 	Application.Quit();
+			// }
 
-			if(isIndiceAtt()) {
-				cadreTextAtt.sortingOrder = 3;
-			} else {
-				cadreTextAtt.sortingOrder = -1;
-			}
+			// if(isIndiceAtt()) {
+			// 	cadreTextAtt.sortingOrder = 3;
+			// } else {
+			// 	cadreTextAtt.sortingOrder = -1;
+			// }
 
-			if(isIndiceDef()) {
-				cadreTextDef.sortingOrder = 3;
-			} else {
-				cadreTextDef.sortingOrder = -1;
-			}
+			// if(isIndiceDef()) {
+			// 	cadreTextDef.sortingOrder = 3;
+			// } else {
+			// 	cadreTextDef.sortingOrder = -1;
+			// }
 		}
 
 		bool isFinalMap() {

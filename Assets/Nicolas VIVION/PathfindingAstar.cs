@@ -33,7 +33,6 @@ namespace vivion {
 		private GameObject myCam;
 		private Tracking myScript;
 
-
 		void Start () {
 			myCam = GameObject.FindWithTag("MainCamera");
 			myScript = (Tracking) myCam.GetComponent(typeof(Tracking));
@@ -46,6 +45,17 @@ namespace vivion {
 		private bool doneDeplac = true;
 		private Vector2 tEnCours;
 
+
+		/*
+			L'algo astar est executer tous les X temps afin d'alleger le code
+			il ce base donc sur un mob puisqu'il sert a se rapprocher le plus vite possible de notre personnage
+			l'algo est limité a la carte sur laquel le mob est poser (cf fonction : inMapMob())
+			le pathfinding une fois executer va enregister un chemin a faire pour se rapporcher,
+			celui ci est sous formed'une liste (cf List<Vector2Int> deplacement) elle sera composer des positions a effectuer
+
+			Quand celle ci est retourner alors nous commencons a deplacer notre mob
+
+		 */
 		void Update () {
 			if(inMapMob()){
 
@@ -56,7 +66,6 @@ namespace vivion {
 				float frameDurationMob = GetFrameDurationInSecMob();
 				accMob += Time.deltaTime;
 				while(accMob > frameDurationMob) {
-
 					if(deplacement != null && enCours < deplacement.Count && doneDeplac){
 						direction = deplacement[enCours];
 						enCours++;
@@ -77,6 +86,7 @@ namespace vivion {
 
 			}
 		}
+
 		private bool inMapMob(){
 			if(mapMob.Equals(myScript.mapEnCour())){
 				return true;
@@ -84,7 +94,8 @@ namespace vivion {
 			return false;
 		}
 		private float GetFrameDurationInSec () {
-            return 1.5f;
+            // return 1.5f;
+			 return 0.05f;
         }
 		private float GetFrameDurationInSecMob () {
             return 1f/5;
@@ -98,7 +109,7 @@ namespace vivion {
 			lOuverte.Add(depart);
 
 			int loopStop = 0;
-			while(lOuverte.Count > 0 && loopStop < 200){
+			while(lOuverte.Count > 0 && loopStop < 1000){
 				loopStop++;
 				NodeAstar current = getBestNode(lOuverte);
 				lOuverte.Remove(current);
@@ -109,19 +120,37 @@ namespace vivion {
 				NodeAstar[] voisins = CreateAvailableNeighbours (current, target, lFerme);
 				
                	foreach (NodeAstar voisin in voisins) {
-					if(voisin != null){
-						voisin.cout = current.cout + 1;
-						if (!IsClosed (voisin, lFerme, voisin.getTotal ()) && !detectColision (voisin.position)){
-							voisin.parent = current;
-							lOuverte.Add(voisin);
+					   	int indice = voisinExistInOpenList(voisin, lOuverte);
+					   	if(-1 == indice){
+							//   s'il nexiste pas ont ajoute
+							if(voisin != null){
+								voisin.cout = current.cout + 1;
+								if (!IsClosed(voisin, lFerme, voisin.getTotal ()) && !detectColision (voisin.position)){
+									voisin.parent = current;
+									lOuverte.Add(voisin);
+								}
+							}
+						}else{
+							// sinon update
+							if(lOuverte[indice].getTotal() > voisin.getTotal()){
+								lOuverte[indice] = voisin;
+							}
 						}
-					}
+					
                }
            	}
 
 			return null;
 		}
 		
+		public int voisinExistInOpenList(NodeAstar voisin , List<NodeAstar> lOuverte){
+			if(voisin == null) return -1;
+			if(lOuverte == null) return -1;
+			for (int i = 0; i < lOuverte.Count; i++){
+				if(lOuverte[i].position.x == voisin.position.x && lOuverte[i].position.y == voisin.position.y) return i;
+			}
+			return -1;
+		}
 		private bool TapeToPerso(Vector2Int pos, Vector2Int target){
 			if(Vector2.Distance(pos, target) < 0.2) {
 				return true;
