@@ -37,9 +37,6 @@ namespace vivion {
 		void Start () {
 			myCam = GameObject.FindWithTag("MainCamera");
 			myScript = (Tracking) myCam.GetComponent(typeof(Tracking));
-			// Vector2Int origin = WorldToCell(new Vector2(this.transform.position.x, this.transform.position.y));
-			// Vector2Int target = WorldToCell(new Vector2(personnage.position.x, personnage.position.y));
-			// deplacement = exploreWithPathFinding(origin, target);
 		}
 		
         private float accumulateur = 0;
@@ -67,24 +64,6 @@ namespace vivion {
 					accMob -= frameDurationMob;
 				}
 				this.transform.position = Vector2.MoveTowards(tEnCours, direction, 0.05f);
-
-			
-				
-				
-
-
-				// float frameDurationMob = GetFrameDurationInSecMob();
-				// accMob += Time.deltaTime;
-				// while(accMob > frameDurationMob) {
-
-				// 	if(deplacement != null && enCours < deplacement.Count){
-				// 		direction = deplacement[enCours];
-				// 		enCours++;
-				// 		mouve(direction);
-				// 	}
-				// 	accMob -= frameDurationMob;
-
-				// }
 
 				float frameDuration = GetFrameDurationInSec();
 				accumulateur += Time.deltaTime;
