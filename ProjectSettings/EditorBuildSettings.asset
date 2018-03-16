@@ -4,4 +4,10 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 0
+    path: Assets/AlexandreLePoupon/MapLPJ.unity
+    guid: 037dbcc79027bda4f89a8d3a4bad48ff
+  - enabled: 1
+    path: Assets/dist/MapLPJV1.unity
+    guid: c30014db7c9615a49afe87e1ba9961e5
