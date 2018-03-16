@@ -44,7 +44,7 @@ public class StartScript : MonoBehaviour {
 			cadreText.sortingOrder = 3;
 		}
 
-		if (!dragonRoar.isPlaying && showText == false && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Return))) {
+		if (!dragonRoar.isPlaying && showText == false && (Input.GetButtonDown("Entrer"))) {
 			cadreText.sortingOrder = -1;
 		}
 	}
