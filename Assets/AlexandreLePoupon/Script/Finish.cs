@@ -84,13 +84,13 @@ namespace lepoupon {
 			}
 
 			if(isIndiceAtt()) {
-				cadreTextAtt.sortingOrder = 3;
+				cadreTextAtt.sortingOrder = 8;
 			} else {
 				cadreTextAtt.sortingOrder = -1;
 			}
 
 			if(isIndiceDef()) {
-				cadreTextDef.sortingOrder = 3;
+				cadreTextDef.sortingOrder = 8;
 			} else {
 				cadreTextDef.sortingOrder = -1;
 			}
@@ -178,7 +178,7 @@ namespace lepoupon {
 			text.Add("Redémarrage ...");
 
 			endText.text = text[inc];
-			cadreText.sortingOrder = 3;
+			cadreText.sortingOrder = 8;
 
 		}
 	}

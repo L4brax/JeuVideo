@@ -41,7 +41,7 @@ public class StartScript : MonoBehaviour {
 
 		if (showText == true) {
 			showText = false;
-			cadreText.sortingOrder = 3;
+			cadreText.sortingOrder = 8;
 		}
 
 		if (!dragonRoar.isPlaying && showText == false && (Input.GetButtonDown("Entrer"))) {
