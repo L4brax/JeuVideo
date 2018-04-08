@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace vivion {
 	public class NodeAstar {
 		public Vector2Int position;
 		public NodeAstar parent = null;
@@ -95,10 +94,11 @@ namespace vivion {
 		}
 		private float GetFrameDurationInSec () {
             // return 1.5f;
-			 return 0.05f;
+			 return 0.01f;
         }
 		private float GetFrameDurationInSecMob () {
-            return 1f/5;
+            // return 1f;
+            return 0.01f;
         }
 
 		public List<Vector2Int> exploreWithPathFinding(Vector2Int origin, Vector2Int target){
@@ -249,5 +249,4 @@ namespace vivion {
 			this.transform.position = new Vector3(direction.x, direction.y, 0);
 		}
 
-	}
 }

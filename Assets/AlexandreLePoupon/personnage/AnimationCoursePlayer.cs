@@ -10,6 +10,7 @@ public struct AnimationPlayer {
 
     public Sprite[] sprites;
 }
+//Sprite animé: Modification du sprite du personnage en fonction du mouvement vitesse et orientation
 public class AnimationCoursePlayer : MonoBehaviour {
 
     // liste des animations configurables

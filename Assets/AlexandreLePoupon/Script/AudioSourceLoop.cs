@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Lire une musique : gestion de la musique de fond + son en debut de partie + dans le script finish modification de la musique de fond
 public class AudioSourceLoop : MonoBehaviour {
 
  	public AudioSource backgroundSound;

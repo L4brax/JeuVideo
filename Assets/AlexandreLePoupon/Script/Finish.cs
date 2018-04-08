@@ -72,6 +72,7 @@ namespace lepoupon {
 				inc = 0;
 				fight();
 			}
+			//Supporter plusieurs inputs pour la méme action: gestion avec l'input manager
 			if(isFinalMap() && (Input.GetButtonDown("Entrer"))) {
 				inc += 1;
 				if(text[inc] == "Redémarrage ...") {

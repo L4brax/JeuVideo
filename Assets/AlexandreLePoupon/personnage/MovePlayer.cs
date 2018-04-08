@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Réagir aux interractions du joueur : Deplacement du personnage + passage de dialogue dans le script start et finish
+//Utiliser des RigidBody2D qui entrent en collision : Deplacement du personnage
+//Réagir dynamiquement aux collisions : Deplacement du personnage
 public class MovePlayer : MonoBehaviour {
 
 	public float acceleration = 8f; // unit per second, per second

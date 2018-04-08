@@ -118,6 +118,12 @@ namespace vivion {
 			matrice.Add("3_3", grid.transform.GetChild(18).gameObject);
 			matrice.Add("4_3", grid.transform.GetChild(19).gameObject);
 
+			matrice.Add("0_4", grid.transform.GetChild(20).gameObject);
+			matrice.Add("1_4", grid.transform.GetChild(21).gameObject);
+			matrice.Add("2_4", grid.transform.GetChild(22).gameObject);
+			matrice.Add("3_4", grid.transform.GetChild(23).gameObject);
+			matrice.Add("4_4", grid.transform.GetChild(24).gameObject);
+
 
 		}
 

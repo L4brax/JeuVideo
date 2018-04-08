@@ -5,13 +5,13 @@ using UnityEngine;
 // Ce script doit être executer en premier !!!!!!!!!!!!
 // edit -> project setting -> script execution order
 
-
 // afin d'ajouter une carte ce qui est important c'est la position de map 
 //(si la taille d'une carte fait x2 8 et y 16 par exemple)
 // alors la position de la map doit est de + x 28 et y + 0 si elle est sur sa droite
 // alors la position de la map doit est de + x 0 et y + 28 si elle est sur le haut
 // si la map se place nimporte deplacer ensuite les tilemaps a l'intérieur de cette map
 
+//Tracking souple: Utilisation d'une fonction de tracking dès que le personnage change de map
 	public class Tracking : MonoBehaviour {
 
 
